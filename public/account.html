@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CiraCart - Account Login</title>
+        <meta name="description" content="Login to your CiraCart account or create a new one to manage your orders and wishlists.">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="newsletter.css" />
+        <link rel="stylesheet" href="register-styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <script src="script.js" defer></script>
+        <script src="auth.js" defer></script>
+    </head>
+<body>
+    <!-- Top announcement bar -->
+    <div class="announcement-bar">
+        <div class="container">
+            <p>Free shipping on orders over $50! Use code: FREESHIP50</p>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <h1>CiraCart</h1>
+                </a>
+            </div>
+            
+            <div class="search-bar">
+                <form action="/search" method="GET">
+                    <input type="text" name="query" placeholder="Search for products...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>    
+                    <li class="dropdown">
+                        <a href="categories.html">Categories</a>
+                        <div class="dropdown-content">
+                            <a href="categories.html?category=electronics">Electronics</a>
+                            <a href="categories.html?category=clothing">Clothing</a>
+                            <a href="categories.html?category=home-decor">Home Decor</a>
+                            <a href="categories.html?category=beauty">Beauty</a>
+                        </div>
+                    </li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <a href="/wishlist" class="wishlist-icon"><i class="fas fa-heart"></i></a>
+                <a href="/cart" class="cart-icon"><i class="fas fa-shopping-cart"></i> <span class="cart-count">0</span></a>
+                <a href="account.html" class="account-icon"><i class="fas fa-user"></i></a>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                Menu
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="/cart">Cart</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <div class="account-container">
+            <h1 class="account-title">Login to Your Account</h1>
+            <form action="/login" method="POST" class="login-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" name="email" placeholder="Enter your email" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" placeholder="Enter your password" required />
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember-me" name="remember" />
+                    <label for="remember-me">Remember me</label>
+                </div>
+
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+
+            <p class="register-prompt">
+                Don't have an account? <a href="register.html">Create account</a>.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+    <!-- Account notification toast -->
+    <div class="notification-toast" id="account-notification">
+        <div class="notification-icon">
+            <i class="fas fa-info-circle"></i>
+        </div>
+        <div class="notification-content">
+            <h4 id="account-notification-title"></h4>
+            <p id="account-notification-message"></p>
+        </div>
+        <button class="notification-close" id="account-notification-close"><i class="fas fa-times"></i></button>
+    </div>
+</body>
+</html>

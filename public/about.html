@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - CiraCart</title>
+    <meta name="description" content="Learn more about CiraCart, our mission, values, and what makes us your ideal online shopping destination.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about-styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
+    <script src="about-scripts.js" defer></script>
+</head>
+<body>
+    <!-- Top announcement bar -->
+    <div class="announcement-bar">
+        <div class="container">
+            <p>Free shipping on orders over $50! Use code: FREESHIP50</p>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <h1>CiraCart</h1>
+                </a>
+            </div>
+            
+            <div class="search-bar">
+                <form action="/search" method="GET">
+                    <input type="text" name="query" placeholder="Search for products...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>    
+                    <li class="dropdown">
+                        <a href="categories.html">Categories <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="categories.html?category=electronics">Electronics</a>
+                            <a href="categories.html?category=clothing">Clothing</a>
+                            <a href="categories.html?category=home-decor">Home Decor</a>
+                            <a href="categories.html?category=beauty">Beauty</a>
+                        </div>
+                    </li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <a href="wishlist.html" class="wishlist-icon"><i class="fas fa-heart"></i></a>
+                <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i> <span class="cart-count">0</span></a>
+                <a href="account.html" class="account-icon"><i class="fas fa-user"></i></a>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="/account">My Account</a></li>
+            <li><a href="/cart">Cart</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="container">
+                <div class="about-hero-content">
+                    <h2>The Story Behind CiraCart</h2>
+                    <p>We're passionate about providing high-quality, affordable products with exceptional customer service. Our mission is to make online shopping simple, enjoyable, and reliable for everyone.</p>
+                    <div class="about-hero-image">
+                        <img src="images/office team.jpg" alt="CiraCart Team" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Vision Section -->
+        <section class="mission-vision">
+            <div class="container">
+                <h2 class="section-title">Our Mission & Vision</h2>
+                <div class="mission-content">
+                    <div class="mission-item">
+                        <h3>Our Mission</h3>
+                        <p>To provide customers with a seamless online shopping experience, offering high-quality products at competitive prices while maintaining exceptional customer service.</p>
+                    </div>
+                    <div class="mission-item">
+                        <h3>Our Vision</h3>
+                        <p>To become the leading e-commerce platform known for reliability, innovation, and customer satisfaction across diverse product categories.</p>
+                    </div>
+                </div>
+                
+                <div class="values">
+                    <h3>Our Core Values</h3>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <i class="fas fa-hand-holding-heart"></i>
+                            <h4>Customer First</h4>
+                            <p>We prioritize customer satisfaction in everything we do.</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-gem"></i>
+                            <h4>Quality</h4>
+                            <p>We offer only products that meet our high standards.</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-lock"></i>
+                            <h4>Integrity</h4>
+                            <p>We operate with honesty and transparency.</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>Innovation</h4>
+                            <p>We continuously improve our platform and offerings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="why-choose-us">
+            <div class="container">
+                <h2 class="section-title">Why Choose CiraCart</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <i class="fas fa-truck-fast"></i>
+                        <h3>Fast Shipping</h3>
+                        <p>Enjoy quick delivery on all orders with our efficient logistics network.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-tag"></i>
+                        <h3>Competitive Pricing</h3>
+                        <p>Get the best value with our regular deals and competitive product pricing.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Secure Shopping</h3>
+                        <p>Shop with confidence knowing your data and transactions are protected.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-headset"></i>
+                        <h3>24/7 Support</h3>
+                        <p>Our customer service team is always available to assist you.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-box-open"></i>
+                        <h3>Easy Returns</h3>
+                        <p>Hassle-free return process if you're not satisfied with your purchase.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-certificate"></i>
+                        <h3>Quality Guarantee</h3>
+                        <p>All products are vetted to ensure they meet our quality standards.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team">
+            <div class="container">
+                <h2 class="section-title">Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="images/Dennis.jpg" alt="CEO" onerror="this.src='images/placeholder.jpg'">
+                        </div>
+                        <h3>Dennis Cira</h3>
+                        <p class="member-title">CEO & Founder</p>
+                        <p class="member-bio">With over 15 years in e-commerce, John leads our company vision and strategy.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="images/lisa.jpg" alt="CTO" onerror="this.src='images/placeholder.jpg'">
+                        </div>
+                        <h3>Lisa Johnson</h3>
+                        <p class="member-title">Chief Technology Officer</p>
+                        <p class="member-bio">Lisa oversees our tech infrastructure and continuous platform improvements.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="images/david chen.jpg" alt="CMO" onerror="this.src='images/placeholder.jpg'">
+                        </div>
+                        <h3>David Chen</h3>
+                        <p class="member-title">Chief Marketing Officer</p>
+                        <p class="member-bio">David drives our marketing strategies and customer engagement initiatives.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="images/serah.jpg" alt="Customer Service Head" onerror="this.src='images/placeholder.jpg'">
+                        </div>
+                        <h3>Sarah Rodriguez</h3>
+                        <p class="member-title">Head of Customer Service</p>
+                        <p class="member-bio">Sarah ensures every customer receives exceptional support and care.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Process Section -->
+        <section class="our-process">
+            <div class="container">
+                <h2 class="section-title">Our Process</h2>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3>Careful Product Selection</h3>
+                        <p>We meticulously select products from reliable manufacturers and brands that meet our strict quality standards.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3>Quality Assurance</h3>
+                        <p>Each product undergoes rigorous testing and quality checks before being added to our inventory.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3>Secure Warehousing</h3>
+                        <p>Products are stored in our state-of-the-art warehouses under optimal conditions to maintain quality.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3>Efficient Order Fulfillment</h3>
+                        <p>Orders are processed quickly and accurately, with careful packaging to ensure safe delivery.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h3>Post-Purchase Support</h3>
+                        <p>Our team provides ongoing support after your purchase to ensure complete satisfaction.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="about-testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"CiraCart has become my go-to online store. Their product quality and customer service are unmatched!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/emma.jpg" alt="Customer" onerror="this.src='images/placeholder.jpg'">
+                            <div>
+                                <h4>Emma Thompson</h4>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"I've never experienced such fast shipping and careful packaging. My electronics arrived in perfect condition!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/james.jpg" alt="Customer" onerror="this.src='images/placeholder.jpg'">
+                            <div>
+                                <h4>James Wilson</h4>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"The return process was so smooth when my item didn't fit. Got a replacement within days with no hassle."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/garcia.jpg" alt="Customer" onerror="this.src='images/placeholder.jpg'">
+                            <div>
+                                <h4>Maria Garcia</h4>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="customer-stats">
+                    <div class="stat">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Customer Satisfaction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">99.7%</span>
+                        <span class="stat-label">On-Time Delivery</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Corporate Responsibility Section -->
+        <section class="corporate-responsibility">
+            <div class="container">
+                <h2 class="section-title">Corporate Responsibility</h2>
+                <div class="responsibility-grid">
+                    <div class="responsibility-item">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Environmental Initiatives</h3>
+                        <p>We're committed to reducing our carbon footprint through eco-friendly packaging, energy-efficient warehouses, and partnerships with sustainable brands.</p>
+                    </div>
+                    <div class="responsibility-item">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Community Involvement</h3>
+                        <p>CiraCart actively supports local communities through charitable donations, volunteer work, and educational programs focused on digital literacy.</p>
+                    </div>
+                    <div class="responsibility-item">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Ethical Business Practices</h3>
+                        <p>We maintain strict ethical standards in all our operations, ensuring fair labor practices and responsible sourcing throughout our supply chain.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policies Section -->
+        <section class="policies">
+            <div class="container">
+                <h2 class="section-title">Our Policies</h2>
+                <div class="policy-tabs">
+                    <div class="tab-navigation">
+                        <button class="tab-button active" data-tab="shipping">Shipping Policy</button>
+                        <button class="tab-button" data-tab="returns">Returns & Refunds</button>
+                        <button class="tab-button" data-tab="privacy">Privacy Policy</button>
+                        <button class="tab-button" data-tab="terms">Terms & Conditions</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div id="shipping" class="tab-pane active">
+                            <h3>Shipping Policy</h3>
+                            <div class="policy-content">
+                                <h4>Delivery Timeframes</h4>
+                                <p>Standard shipping: 3-5 business days</p>
+                                <p>Express shipping: 1-2 business days</p>
+                                <p>International shipping: 7-14 business days</p>
+                                
+                                <h4>Shipping Costs</h4>
+                                <p>Orders under $50: $5.99 shipping fee</p>
+                                <p>Orders over $50: FREE shipping</p>
+                                <p>Express shipping: Additional $9.99</p>
+                                
+                                <h4>Tracking</h4>
+                                <p>All orders include tracking information sent via email once your package is dispatched.</p>
+                            </div>
+                        </div>
+                        
+                        <div id="returns" class="tab-pane">
+                            <h3>Returns & Refunds</h3>
+                            <div class="policy-content">
+                                <h4>Return Eligibility</h4>
+                                <p>Items can be returned within 30 days of delivery if unused and in original packaging.</p>
+                                
+                                <h4>Return Process</h4>
+                                <ol>
+                                    <li>Initiate return through your account dashboard</li>
+                                    <li>Print the provided return label</li>
+                                    <li>Package item securely with all original materials</li>
+                                    <li>Drop off at any authorized shipping location</li>
+                                </ol>
+                                
+                                <h4>Refund Timeline</h4>
+                                <p>Refunds are processed within 5-7 business days after we receive your return.</p>
+                                
+                                <h4>Non-Returnable Items</h4>
+                                <p>Perishable goods, downloadable software, and customized items are non-returnable.</p>
+                            </div>
+                        </div>
+                        
+                        <div id="privacy" class="tab-pane">
+                            <h3>Privacy Policy</h3>
+                            <div class="policy-content">
+                                <h4>Information Collection</h4>
+                                <p>We collect personal information necessary for processing orders, improving user experience, and communicating with customers.</p>
+                                
+                                <h4>Data Protection</h4>
+                                <p>All customer data is securely stored using industry-standard encryption and protection measures.</p>
+                                
+                                <h4>Third-Party Sharing</h4>
+                                <p>We never sell your personal information to third parties. Information is only shared with service providers necessary for order fulfillment.</p>
+                                
+                                <h4>Cookies Policy</h4>
+                                <p>Our website uses cookies to enhance browsing experience and provide personalized services.</p>
+                            </div>
+                        </div>
+                        
+                        <div id="terms" class="tab-pane">
+                            <h3>Terms & Conditions</h3>
+                            <div class="policy-content">
+                                <h4>Account Responsibilities</h4>
+                                <p>Users are responsible for maintaining account security and providing accurate information.</p>
+                                
+                                <h4>Intellectual Property</h4>
+                                <p>All content and images on CiraCart are protected by copyright and may not be used without permission.</p>
+                                
+                                <h4>Product Descriptions</h4>
+                                <p>We strive for accuracy in product descriptions, but cannot guarantee that product colors will appear exactly as displayed on your device.</p>
+                                
+                                <h4>Pricing and Availability</h4>
+                                <p>Prices and availability are subject to change without notice. We reserve the right to limit quantities of products purchased.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Be the first to know about new products and exclusive offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h3>CiraCart</h3>
+                    <p>Your one-stop destination for all your shopping needs. We provide high-quality products at affordable prices.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="contact.html#faq">FAQ</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section links">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="about.html#shipping">Shipping Policy</a></li>
+                        <li><a href="about.html#returns">Returns & Refunds</a></li>
+                        <li><a href="about.html#privacy">Privacy Policy</a></li>
+                        <li><a href="about.html#terms">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 54 Shopping Street, Juja city</p>
+                    <p><i class="fas fa-envelope"></i> info@ciracart.com</p>
+                    <p><i class="fas fa-phone"></i> +254 758729373</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9 AM - 5 PM</p>
+                </div>
+           
+                <div class="payment-methods">
+                    <span>We Accept:</span>
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 CiraCart. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Categories - CiraCart</title>
+    <meta name="description" content="Browse our product categories including electronics, clothing, home decor, and beauty products." />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="newsletter.css" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="script.js" defer></script>
+    <script src="products-data-global.js" defer></script>
+    <script src="categories-scripts.js" defer></script>
+</head>
+<body class="categories-page">
+    <!-- Top announcement bar -->
+    <div class="announcement-bar">
+        <div class="container">
+            <p>Free shipping on orders over $50! Use code: FREESHIP50</p>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <h1>CiraCart</h1>
+                </a>
+            </div>
+
+            <div class="search-bar">
+                <form action="/search" method="GET">
+                    <input type="text" name="query" placeholder="Search for products..." />
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li class="dropdown">
+                        <a href="categories.html" class="active">Categories <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="categories.html?category=electronics">Electronics</a>
+                            <a href="categories.html?category=clothing">Clothing</a>
+                            <a href="categories.html?category=home-decor">Home Decor</a>
+                            <a href="categories.html?category=beauty">Beauty</a>
+                        </div>
+                    </li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-actions">
+                <a href="wishlist.html" class="wishlist-icon"><i class="fas fa-heart"></i></a>
+                <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i> <span class="cart-count">0</span></a>
+                <a href="account.html" class="account-icon"><i class="fas fa-user"></i></a>
+            </div>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="categories.html" class="active">Categories</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- Category Banner -->
+        <section class="category-banner" id="category-banner">
+            <div class="container">
+                <h1 id="category-title">All Categories</h1>
+                <p id="category-description">Browse our wide selection of products across various categories.</p>
+            </div>
+        </section>
+
+        <div class="products-layout">
+            <aside class="filters-sidebar" id="filters-sidebar">
+                <button class="filter-close" id="filter-close" aria-label="Close filters"><i class="fas fa-times"></i></button>
+                
+                <div class="filter-section">
+                    <h3>Categories</h3>
+                    <div class="category-filter">
+                        <label>
+                            <input type="checkbox" name="category" value="electronics"> Electronics
+                        </label>
+                        <label>
+                            <input type="checkbox" name="category" value="clothing"> Clothing
+                        </label>
+                        <label>
+                            <input type="checkbox" name="category" value="home-decor"> Home Decor
+                        </label>
+                        <label>
+                            <input type="checkbox" name="category" value="beauty"> Beauty
+                        </label>
+                        <label>
+                            <input type="checkbox" name="category" value="accessories"> Accessories
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Price Range</h3>
+                    <div class="price-filter">
+                        <div class="price-range">
+                            <input type="range" min="0" max="500" value="500" id="price-slider">
+                            <div class="price-labels">
+                                <span>$0</span>
+                                <span class="price-display">$500</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Average Rating</h3>
+                    <div class="rating-filter">
+                        <label>
+                            <input type="checkbox" name="rating" value="5">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>(5)</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="rating" value="4">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>& Up (4+)</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="rating" value="3">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>& Up (3+)</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="rating" value="2">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>& Up (2+)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Availability</h3>
+                    <div class="category-filter">
+                        <label>
+                            <input type="checkbox" name="availability" value="in-stock"> In Stock
+                        </label>
+                        <label>
+                            <input type="checkbox" name="availability" value="sale"> On Sale
+                        </label>
+                    </div>
+                </div>
+
+                <button class="filter-reset" id="filter-reset">Clear All Filters</button>
+            </aside>
+
+            <div class="container">
+              <div class="products-main">
+                <div class="products-toolbar">
+                    <div class="products-count">
+                        <span>Showing 1-8 of 96 products</span>
+                    </div>
+                    <div class="products-sorting" style="margin-left:auto;">
+                        <label for="sort-select">Sort by:</label>
+                        <select id="sort-select" class="sort-select">
+                            <option value="default">Featured</option>
+                            <option value="price-low-high">Price: Low to High</option>
+                            <option value="price-high-low">Price: High to Low</option>
+                            <option value="name-a-z">Name: A-Z</option>
+                            <option value="name-z-a">Name: Z-A</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="product-grid" id="product-container">
+                    <!-- Products will be dynamically rendered here -->
+                </div>
+            </div>
+        </div>
+        <div>
+    </main>        
+           
+    
+
+        <section class="featured-categories">
+            <div class="container">
+                <h2 class="section-title">Popular Categories</h2>
+                <div class="category-grid">
+                    <a href="categories.html?category=electronics" class="category-card">
+                        <div class="category-image">
+                            <img src="images/electronics.jpg" alt="Electronics" onerror="this.src='images/placeholder.jpg'">
+                            <div class="placeholder-image">Electronics</div>
+                        </div>
+                        <h3>Electronics</h3>
+                    </a>
+                    <a href="categories.html?category=clothing" class="category-card">
+                        <div class="category-image">
+                            <img src="images/clothings.jpg" alt="Clothing" onerror="this.src='images/placeholder.jpg'">
+                            <div class="placeholder-image">Clothing</div>
+                        </div>
+                        <h3>Clothing</h3>
+                    </a>
+                    <a href="categories.html?category=home-decor" class="category-card">
+                        <div class="category-image">
+                            <img src="images/homedecor.jpg" alt="Home Decor" onerror="this.src='images/placeholder.jpg'">
+                            <div class="placeholder-image">Home Decor</div>
+                        </div>
+                        <h3>Home Decor</h3>
+                    </a>
+                    <a href="categories.html?category=beauty" class="category-card">
+                        <div class="category-image">
+                            <img src="images/beauty.jpg" alt="Beauty" onerror="this.src='images/placeholder.jpg'">
+                            <div class="placeholder-image">Beauty</div>
+                        </div>
+                        <h3>Beauty</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+                
+      
+
+        <section class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Be the first to know about new products and exclusive offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required />
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h3>CiraCart</h3>
+                    <p>Your one-stop destination for all your shopping needs. We provide high-quality products at affordable prices.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section links">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="about.html#shipping">Shipping Policy</a></li>
+                        <li><a href="about.html#returns">Returns & Refunds</a></li>
+                        <li><a href="about.html#privacy">Privacy Policy</a></li>
+                        <li><a href="about.html#terms">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 54 Shopping Street, Juja city</p>
+                    <p><i class="fas fa-envelope"></i> info@ciracart.com</p>
+                    <p><i class="fas fa-phone"></i> +254 758729373</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9 AM - 5 PM</p>
+                </div>
+            
+            
+                <div class="payment-methods">
+                    <span>We Accept:</span>
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 CiraCart. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

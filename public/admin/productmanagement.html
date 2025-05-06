@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CiraCart - Admin Product Management</title>
+    <meta name="description" content="Admin product management for CiraCart e-commerce.">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <script src="admin-script.js" defer></script>
+</head>
+<body>
+    <div class="admin-dashboard">
+        <aside class="admin-sidebar">
+            <div class="admin-branding">
+                <h2>CiraCart Admin</h2>
+            </div>
+            
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="admindashboard.html">Dashboard</a></li>
+                    <li><a href="productmanagement.html" class="active">Products</a></li>
+                    <!-- Removed Categories link as per request -->
+                    <li><a href="admin-orders.html">Orders</a></li>
+                    <li><a href="admin-customers.html">Customers</a></li>
+                    <li><a href="admin-discounts.html">Discounts</a></li>
+                    <li><a href="admin-reports.html">Reports</a></li>
+                    <li><a href="admin-settings.html">Settings</a></li>
+                </ul>
+            </nav>
+            
+            <div class="admin-logout">
+                <a href="admin-login.html">Logout</a>
+            </div>
+        </aside>
+        
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1>Product Management</h1>
+                    <div class="admin-user">
+                        <span>Welcome, Admin</span>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="admin-content">
+                <div class="admin-controls">
+                    <div class="admin-search">
+                        <form action="/admin/products/search" method="GET">
+                            <input type="text" name="query" placeholder="Search products...">
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                    
+                    <div class="admin-filters">
+                        <select name="category">
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="home-decor">Home Decor</option>
+                            <option value="beauty">Beauty</option>
+                        </select>
+                        
+                        <select name="stock">
+                            <option value="">All Stock Status</option>
+                            <option value="in-stock">In Stock</option>
+                            <option value="low-stock">Low Stock</option>
+                            <option value="out-of-stock">Out of Stock</option>
+                        </select>
+                        
+                        <select name="sort">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="price-asc">Price Low to High</option>
+                            <option value="price-desc">Price High to Low</option>
+                            <option value="name-asc">Name A-Z</option>
+                            <option value="name-desc">Name Z-A</option>
+                        </select>
+                    </div>
+                    
+                    <div class="admin-actions">
+                        <a href="admin-product-add.html" class="action-button">Add New Product</a>
+                        <a href="admin-product-import.html" class="action-button">Import Products</a>
+                        <a href="admin-product-export.html" class="action-button">Export Products</a>
+                    </div>
+                </div>
+                
+                <div class="products-table-container">
+                    <table class="admin-table products-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="select-all"></th>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Sale Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="select-item"></td>
+                                <td>P0123</td>
+                                <td class="product-thumbnail">IMG</td>
+                                <td>Smart Watch Pro</td>
+                                <td>Electronics</td>
+                                <td>$99.99</td>
+                                <td>$79.99</td>
+                                <td>24</td>
+                                <td>Active</td>
+                                <td>
+                                    <a href="admin-product-edit.html?id=P0123">Edit</a>
+                                    <a href="admin-product-duplicate.html?id=P0123">Duplicate</a>
+                                    <a href="#" class="delete-link">Delete</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="select-item"></td>
+                                <td>P0124</td>
+                                <td class="product-thumbnail">IMG</td>
+                                <td>Wireless Earbuds</td>
+                                <td>Electronics</td>
+                                <td>$49.99</td>
+                                <td>-</td>
+                                <td>15</td>
+                                <td>Active</td>
+                                <td>
+                                    <a href="admin-product-edit.html?id=P0124">Edit</a>
+                                    <a href="admin-product-duplicate.html?id=P0124">Duplicate</a>
+                                    <a href="#" class="delete-link">Delete</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="select-item"></td>
+                                <td>P0125</td>
+                                <td class="product-thumbnail">IMG</td>
+                                <td>Fitness Tracker Plus</td>
+                                <td>Electronics</td>
+                                <td>$59.99</td>
+                                <td>-</td>
+                                <td>8</td>
+                                <td>Active</td>
+                                <td>
+                                    <a href="admin-product-edit.html?id=P0125">Edit</a>
+                                    <a href="admin-product-duplicate.html?id=P0125">Duplicate</a>
+                                    <a href="#" class="delete-link">Delete</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="select-item"></td>
+                                <td>P0126</td>
+                                <td class="product-thumbnail">IMG</td>
+                                <td>Bluetooth Speaker</td>
+                                <td>Electronics</td>
+                                <td>$45.99</td>
+                                <td>$39.99</td>
+                                <td>0</td>
+                                <td>Out of Stock</td>
+                                <td>
+                                    <a href="admin-product-edit.html?id=P0126">Edit</a>
+                                    <a href="admin-product-duplicate.html?id=P0126">Duplicate</a>
+                                    <a href="#" class="delete-link">Delete</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="select-item"></td>
+                                <td>P0127</td>
+                                <td class="product-thumbnail">IMG</td>
+                                <td>Cotton T-Shirt</td>
+                                <td>Clothing</td>
+                                <td>$24.99</td>
+                                <td>-</td>
+                                <td>42</td>
+                                <td>Active</td>
+                                <td>
+                                    <a href="admin-product-edit.html?id=P0127">Edit</a>
+                                    <a href="admin-product-duplicate.html?id=P0127">Duplicate</a>
+                                    <a href="#" class="delete-link">Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="bulk-actions">
+                    <select name="bulk-action">
+                        <option value="">Bulk Actions</option>
+                        <option value="delete">Delete Selected</option>
+                        <option value="activate">Set as Active</option>
+                        <option value="deactivate">Set as Inactive</option>
+                        <option value="update-stock">Update Stock</option>
+                    </select>
+                    <button type="button">Apply</button>
+                </div>
+                
+                <div class="pagination">
+                    <span>Showing 1-5 of 156 products</span>
+                    <div class="pagination-controls">
+                        <a href="#" class="page-prev">Previous</a>
+                        <a href="#" class="page-number active">1</a>
+                        <a href="#" class="page-number">2</a>
+                        <a href="#" class="page-number">3</a>
+                        <a href="#" class="page-number">4</a>
+                        <a href="#" class="page-number">5</a>
+                        <a href="#" class="page-next">Next</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

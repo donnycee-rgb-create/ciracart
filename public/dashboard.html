@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Your personal account dashboard at CiraCart - Manage orders, wishlists, and more" />
+    <title>CiraCart - Dashboard | John Doe</title>
+    
+    <!-- Preconnect to Font Awesome CDN -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    
+    <!-- Base styles loaded first -->
+    <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Component-specific styles -->
+    <link rel="stylesheet" href="dashboard-styles.css" />
+    <link rel="stylesheet" href="newsletter.css" />
+    
+    <!-- Font Awesome with only necessary components -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    
+    <!-- Structured data for better SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.ciracart.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Account",
+          "item": "https://www.ciracart.com/account"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Dashboard",
+          "item": "https://www.ciracart.com/account/dashboard"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Deferred JS loading -->
+    <script src="auth.js" defer></script>
+    <script src="dashboard-bundle.js" defer></script>
+</head>
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Top announcement bar with closeable option -->
+    <div class="announcement-bar" id="announcement-bar" role="region" aria-label="Promotions">
+        <div class="container">
+            <p><span class="promo-highlight">Free shipping</span> on orders over $50! Use code: <strong>FREESHIP50</strong></p>
+            <button class="close-announcement" aria-label="Close announcement">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/" aria-label="CiraCart Home">
+                    <h1>CiraCart</h1>
+                </a>
+            </div>
+
+            <div class="search-bar">
+                <form action="/search" method="GET" role="search">
+                    <label for="search-input" class="visually-hidden">Search products</label>
+                    <input type="text" id="search-input" name="query" placeholder="Search for products..." autocomplete="off" />
+                    <button type="submit" aria-label="Search">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li class="dropdown">
+                        <button class="dropdown-toggle" aria-expanded="false" aria-controls="categories-dropdown">
+                            Categories <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-content" id="categories-dropdown">
+                            <li><a href="categories.html?category=electronics">Electronics</a></li>
+                            <li><a href="categories.html?category=clothing">Clothing</a></li>
+                            <li><a href="categories.html?category=home-decor">Home Decor</a></li>
+                            <li><a href="categories.html?category=beauty">Beauty</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-actions">
+                <a href="/wishlist" class="wishlist-icon" aria-label="Wishlist">
+                    <i class="fas fa-heart" aria-hidden="true"></i>
+                    <span class="wishlist-count badge" aria-hidden="true">0</span>
+                </a>
+                <a href="/cart" class="cart-icon" aria-label="Shopping cart">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    <span class="cart-count badge" aria-hidden="true">0</span>
+                </a>
+                <div class="account-dropdown">
+                    <button class="account-toggle active" aria-expanded="false" aria-controls="account-dropdown-menu" aria-label="User account">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        <span class="username">John</span>
+                    </button>
+                    <!-- Dropdown menu removed as per request -->
+                </div>
+            </div>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
+                <span class="hamburger-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <div class="mobile-search">
+            <form action="/search" method="GET">
+                <input type="text" name="query" placeholder="Search products..." aria-label="Search products" />
+                <button type="submit" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></button>
+            </form>
+        </div>
+        <nav aria-label="Mobile navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="products-submenu">
+                        Products <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <ul id="products-submenu" class="submenu" aria-hidden="true">
+                        <li><a href="product.html">All Products</a></li>
+                        <li><a href="product.html?featured=true">Featured</a></li>
+                        <li><a href="product.html?new=true">New Arrivals</a></li>
+                        <li><a href="product.html?sale=true">On Sale</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="categories-submenu">
+                        Categories <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <ul id="categories-submenu" class="submenu" aria-hidden="true">
+                        <li><a href="categories.html?category=electronics">Electronics</a></li>
+                        <li><a href="categories.html?category=clothing">Clothing</a></li>
+                        <li><a href="categories.html?category=home-decor">Home Decor</a></li>
+                        <li><a href="categories.html?category=beauty">Beauty</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="divider"></li>
+                <li><a href="/account/dashboard" class="active">My Account</a></li>
+                <li><a href="/wishlist">My Wishlist</a></li>
+                <li><a href="/cart">Shopping Cart</a></li>
+                <li><a href="#" id="mobile-logout-link">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Breadcrumb navigation -->
+    <nav class="breadcrumb-container" aria-label="Breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="/account">Account</a></li>
+                <li aria-current="page">Dashboard</li>
+            </ol>
+        </div>
+    </nav>
+   
+    <main id="main-content">
+        <div class="dashboard-container container">
+            <div class="dashboard-layout active">
+                <aside class="dashboard-sidebar">
+                    <div class="user-profile-summary">
+                        <div class="profile-pic">
+                            <img src="/api/placeholder/100/100" alt="" class="user-avatar" />
+                            <button class="change-avatar-btn" aria-label="Change profile picture">
+                                <i class="fas fa-camera" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <h2 class="welcome-text">Welcome, John!</h2>
+                        <p class="member-since">Member since: Jan 2025</p>
+                        <button id="dashboard-menu-toggle" class="dashboard-menu-toggle" aria-expanded="true" aria-controls="dashboard-menu-list" aria-label="Toggle dashboard menu">
+                            <i class="fas fa-bars" aria-hidden="true"></i> Menu
+                        </button>
+                    </div>
+                    <nav aria-label="Account navigation">
+                        <ul id="dashboard-menu-list" class="dashboard-menu-list active">
+                            <li class="active">
+                                <a href="/account/dashboard">
+                                    <i class="fas fa-tachometer-alt" aria-hidden="true"></i> Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/account/profile">
+                                    <i class="fas fa-user-edit" aria-hidden="true"></i> Edit Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/account/orders">
+                                    <i class="fas fa-shopping-bag" aria-hidden="true"></i> Orders
+                                    <span class="badge">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/account/payments">
+                                    <i class="fas fa-credit-card" aria-hidden="true"></i> Payment Methods
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/account/addresses">
+                                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Addresses
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/account/reviews">
+                                    <i class="fas fa-star" aria-hidden="true"></i> My Reviews
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/wishlist">
+                                    <i class="fas fa-heart" aria-hidden="true"></i> My Wishlist
+                                    <span class="badge">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/account/notifications">
+                                    <i class="fas fa-bell" aria-hidden="true"></i> Notifications
+                                    <span class="badge badge-new">3</span>
+                                </a>
+                            </li>
+                            <li>
+                                <button id="logout-btn">
+                                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <section class="dashboard-content">
+                    <div class="dashboard-header">
+                        <h1>My Dashboard</h1>
+                        <p class="last-login">Last login: May 4, 2025 at 10:15 AM</p>
+                    </div>
+                    
+                    <div class="account-summary">
+                        <div class="summary-card">
+                            <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                            <h3>0</h3>
+                            <p>Orders</p>
+                            <a href="/account/orders" class="card-link">View Orders</a>
+                        </div>
+                        <div class="summary-card">
+                            <i class="fas fa-heart" aria-hidden="true"></i>
+                            <h3>0</h3>
+                            <p>Wishlist Items</p>
+                            <a href="/wishlist" class="card-link">View Wishlist</a>
+                        </div>
+                        <div class="summary-card">
+                            <i class="fas fa-wallet" aria-hidden="true"></i>
+                            <h3>$0</h3>
+                            <p>Store Credit</p>
+                            <a href="/account/credit" class="card-link">View Details</a>
+                        </div>
+                        <div class="summary-card">
+                            <i class="fas fa-award" aria-hidden="true"></i>
+                            <h3>Bronze</h3>
+                            <p>Member Level</p>
+                            <a href="/rewards" class="card-link">Rewards Program</a>
+                        </div>
+                    </div>
+
+                    <div class="notification-banner">
+                        <i class="fas fa-gift" aria-hidden="true"></i>
+                        <div class="banner-content">
+                            <h3>Complete Your Profile</h3>
+                            <p>Add your information and get a <strong>$5 welcome credit</strong> on your first purchase!</p>
+                        </div>
+                        <a href="/account/profile" class="btn-outline">Complete Now</a>
+                    </div>
+
+                    <div class="dashboard-section orders-section">
+                        <div class="section-header">
+                            <h2>Recent Orders</h2>
+                            <a href="/account/orders" class="view-all">View All</a>
+                        </div>
+                        <div class="no-data-message">
+                            <div class="empty-state">
+                                <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                                <p>No recent orders found.</p>
+                                <a href="product.html" class="btn-primary">Start Shopping</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-row">
+                        <div class="dashboard-section payment-section">
+                            <div class="section-header">
+                                <h2>Payment Methods</h2>
+                                <a href="/account/payments" class="view-all">Manage</a>
+                            </div>
+                            <div class="no-data-message">
+                                <div class="empty-state">
+                                    <i class="fas fa-credit-card" aria-hidden="true"></i>
+                                    <p>No payment methods added yet.</p>
+                                    <a href="/account/payments" class="btn-secondary">Add Payment Method</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section address-section">
+                            <div class="section-header">
+                                <h2>Shipping Addresses</h2>
+                                <a href="/account/addresses" class="view-all">Manage</a>
+                            </div>
+                            <div class="no-data-message">
+                                <div class="empty-state">
+                                    <i class="fas fa-home" aria-hidden="true"></i>
+                                    <p>No addresses added yet.</p>
+                                    <a href="/account/addresses" class="btn-secondary">Add Address</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-section wishlist-preview">
+                        <div class="section-header">
+                            <h2>Wishlist</h2>
+                            <a href="/wishlist" class="view-all">View All</a>
+                        </div>
+                        <div class="no-data-message">
+                            <div class="empty-state">
+                                <i class="fas fa-heart" aria-hidden="true"></i>
+                                <p>Your wishlist is empty.</p>
+                                <a href="product.html" class="btn-secondary">Discover Products</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-section recommendations">
+                        <div class="section-header">
+                            <h2>Recommended For You</h2>
+                            <a href="/recommendations" class="view-all">See More</a>
+                        </div>
+                        <div class="product-grid">
+                            <article class="product-card">
+                                <div class="product-image">
+                                    <a href="/product/smart-watch-pro">
+                                        <img src="/api/placeholder/300/300" alt="Smart Watch Pro" loading="lazy" />
+                                    </a>
+                                    <span class="discount-badge">-20%</span>
+                                    <button class="wishlist-btn" aria-label="Add to wishlist">
+                                        <i class="far fa-heart" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="quick-view">
+                                        <button class="quick-view-btn" aria-label="Quick view" data-product-id="123">
+                                            <i class="fas fa-eye" aria-hidden="true"></i> Quick View
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3><a href="/product/smart-watch-pro">Smart Watch Pro</a></h3>
+                                    <div class="product-rating" aria-label="4.5 out of 5 stars">
+                                        <div class="stars" aria-hidden="true">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span>(42 reviews)</span>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="current-price">$79.99</span>
+                                        <span class="original-price">$99.99</span>
+                                    </div>
+                                    <div class="product-actions">
+                                        <button class="btn-add-to-cart" data-product-id="123">
+                                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="product-card">
+                                <div class="product-image">
+                                    <a href="/product/wireless-earbuds">
+                                        <img src="/api/placeholder/300/300" alt="Wireless Earbuds" loading="lazy" />
+                                    </a>
+                                    <button class="wishlist-btn" aria-label="Add to wishlist">
+                                        <i class="far fa-heart" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="quick-view">
+                                        <button class="quick-view-btn" aria-label="Quick view" data-product-id="456">
+                                            <i class="fas fa-eye" aria-hidden="true"></i> Quick View
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3><a href="/product/wireless-earbuds">Wireless Earbuds</a></h3>
+                                    <div class="product-rating" aria-label="4 out of 5 stars">
+                                        <div class="stars" aria-hidden="true">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span>(28 reviews)</span>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="current-price">$49.99</span>
+                                    </div>
+                                    <div class="product-actions">
+                                        <button class="btn-add-to-cart" data-product-id="456">
+                                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="product-card">
+                                <div class="product-image">
+                                    <a href="/product/fitness-tracker-plus">
+                                        <img src="/api/placeholder/300/300" alt="Fitness Tracker Plus" loading="lazy" />
+                                    </a>
+                                    <span class="badge-new">New</span>
+                                    <button class="wishlist-btn" aria-label="Add to wishlist">
+                                        <i class="far fa-heart" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="quick-view">
+                                        <button class="quick-view-btn" aria-label="Quick view" data-product-id="789">
+                                            <i class="fas fa-eye" aria-hidden="true"></i> Quick View
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3><a href="/product/fitness-tracker-plus">Fitness Tracker Plus</a></h3>
+                                    <div class="product-rating" aria-label="5 out of 5 stars">
+                                        <div class="stars" aria-hidden="true">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span>(19 reviews)</span>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="current-price">$59.99</span>
+                                    </div>
+                                    <div class="product-actions">
+                                        <button class="btn-add-to-cart" data-product-id="789">
+                                            <i class="fas fa-shopping-cart" aria-hidden="true"></i> Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-section recent-viewed">
+                        <div class="section-header">
+                            <h2>Recently Viewed</h2>
+                            <button class="clear-history" aria-label="Clear viewing history">
+                                <i class="fas fa-trash-alt" aria-hidden="true"></i> Clear
+                            </button>
+                        </div>
+                        <div class="empty-state">
+                            <i class="fas fa-eye" aria-hidden="true"></i>
+                            <p>No products viewed recently.</p>
+                            <a href="/categories.html" class="btn-text">Browse Categories</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Newsletter signup section with enhanced accessibility -->
+    <section class="newsletter-section" aria-labelledby="newsletter-heading">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 id="newsletter-heading">Join Our Newsletter</h2>
+                <p>Subscribe to get special offers, free giveaways, and personalized recommendations.</p>
+                
+                <form class="newsletter-form" action="/subscribe" method="POST">
+                    <div class="form-group">
+                        <label for="newsletter-email" class="visually-hidden">Email address</label>
+                        <input type="email" id="newsletter-email" name="email" placeholder="Your email address" required />
+                        <button type="submit" class="btn-subscribe">Subscribe</button>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="newsletter-consent" name="consent" required />
+                        <label for="newsletter-consent">I agree to receive marketing emails from CiraCart</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h2>CiraCart</h2>
+                    <p>Your one-stop destination for all your shopping needs. We provide high-quality products at affordable prices.</p>
+                    <div class="social-icons" aria-label="Social media links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section links">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section links">
+                    <h2>Customer Service</h2>
+                    <ul>
+                        <li><a href="about.html#shipping">Shipping Policy</a></li>
+                        <li><a href="about.html#returns">Returns & Refunds</a></li>
+                        <li><a href="about.html#privacy">Privacy Policy</a></li>
+                        <li><a href="about.html#terms">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact">
+                    <h2>Contact Info</h2>
+                    <address>
+                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 54 Shopping Street, Juja city</p>
+                        <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:info@ciracart.com">info@ciracart.com</a></p>
+                        <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+254758729373">+254 758729373</a></p>
+                        <p><i class="fas fa-clock" aria-hidden="true"></i> Mon-Fri: 9 AM - 5 PM</p>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="payment-methods" aria-label="Accepted payment methods">
+                    <span>We Accept:</span>
+                    <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                    <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                    <i class="fab fa-cc-amex" aria-label="American Express"></i>
+                    <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 CiraCart. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast notifications system with improved accessibility -->
+    <div class="notifications-container" id="notifications-container" aria-live="polite">
+        <!-- Notifications will be dynamically inserted here -->
+    </div>
+
+    <!-- Toast notification templates -->
+    <template id="notification-template">
+        <div class="notification-toast" role="status">
+            <div class="notification-icon">
+                <i class="fas fa-info-circle" aria-hidden="true"></i>
+            </div>
+            <div class="notification-content">
+                <h3 class="notification-title"></h3>
+                <p class="notification-message"></p>
+            </div>
+            <button class="notification-close" aria-label="Close notification">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </template>
+
+  
+    <!-- Cookie consent banner -->
+    <div class="cookie-consent" id="cookie-consent" aria-describedby="cookie-description">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <h3>Cookie Notice</h3>
+                <p id="cookie-description">We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies.</p>
+            </div>
+            <div class="cookie-actions">
+                <button class="btn-cookie-settings">Cookie Settings</button>
+                <button class="btn-cookie-accept">Accept All</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- Core JS -->
+    <script>
+        // Function to show notifications
+        function showNotification(title, message, type = 'info', duration = 5000) {
+            const container = document.getElementById('notifications-container');
+            const template = document.getElementById('notification-template');
+            const notification = template.content.cloneNode(true);
+            
+            const notificationElement = notification.querySelector('.notification-toast');
+            notificationElement.classList.add(`notification-${type}`);
+            
+            const icon = notification.querySelector('.notification-icon i');
+            switch(type) {
+                case 'success':
+                    icon.className = 'fas fa-check-circle';
+                    break;
+                case 'error':
+                    icon.className = 'fas fa-exclamation-circle';
+                    break;
+                case 'warning':
+                    icon.className = 'fas fa-exclamation-triangle';
+                    break;
+                default:
+                    icon.className = 'fas fa-info-circle';
+            }
+            
+            notification.querySelector('.notification-title').textContent = title;
+            notification.querySelector('.notification-message').textContent = message;
+            
+            container.appendChild(notification.firstElementChild);
+            
+            const notificationItem = container.lastElementChild;
+            
+            // Animation
+            setTimeout(() => {
+                notificationItem.classList.add('show');
+            }, 10);
+            
+            // Auto dismiss
+            setTimeout(() => {
+                notificationItem.classList.remove('show');
+                setTimeout(() => {
+                    container.removeChild(notificationItem);
+                }, 300);
+            }, duration);
+            
+            // Close button
+            notificationItem.querySelector('.notification-close').addEventListener('click', () => {
+                notificationItem.classList.remove('show');
+                setTimeout(() => {
+                    container.removeChild(notificationItem);
+                }, 300);
+            });
+        }
+
+        // Show welcome notification
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                showNotification('Welcome Back!', 'You\'ve successfully logged in to your account.', 'success');
+            }, 1000);
+
+            // Example of how to use notifications for other events
+            // Add this code where appropriate in your application
+            // showNotification('Item Added', 'Product added to your cart successfully!', 'success');
+            // showNotification('Error', 'Unable to process your request. Please try again.', 'error');
+            // showNotification('Low Stock', 'Only 2 items left in stock!', 'warning');
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            
+            this.setAttribute('aria-expanded', !expanded);
+            mobileMenu.setAttribute('aria-hidden', expanded);
+            mobileMenu.classList.toggle('active');
+            this.classList.toggle('active');
+            
+            // Prevent scrolling when menu is open
+            document.body.classList.toggle('menu-open');
+        });
+
+        // Dashboard sidebar toggle for mobile
+        document.getElementById('dashboard-menu-toggle').addEventListener('click', function() {
+            const menuList = document.getElementById('dashboard-menu-list');
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            
+            this.setAttribute('aria-expanded', !expanded);
+            menuList.classList.toggle('active');
+        });
+        
+        // Account dropdown toggle
+        // Removed account dropdown toggle functionality as dropdown menu is removed
+        // No event listener added for .account-toggle
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Cookie consent
+        const cookieConsent = document.getElementById('cookie-consent');
+        const acceptBtn = document.querySelector('.btn-cookie-accept');
+        
+        // Check if user has already accepted cookies
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                cookieConsent.classList.add('active');
+            }, 2000);
+        }
+        
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieConsent.classList.remove('active');
+        });
+
+        // Announcement bar close button
+        const closeAnnouncement = document.querySelector('.close-announcement');
+        if (closeAnnouncement) {
+            closeAnnouncement.addEventListener('click', () => {
+                document.getElementById('announcement-bar').style.display = 'none';
+                // Store in session storage so it doesn't show until next visit
+                sessionStorage.setItem('announcementClosed', 'true');
+            });
+            
+            // Check if already closed
+            if (sessionStorage.getItem('announcementClosed')) {
+                document.getElementById('announcement-bar').style.display = 'none';
+            }
+        }
+
+        // Logout functionality
+        const logoutButtons = document.querySelectorAll('#logout-link, #mobile-logout-link, #logout-btn');
+        logoutButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Show logout confirmation dialog
+                if (confirm('Are you sure you want to log out?')) {
+                    // In real app, make request to logout endpoint
+                    showNotification('Logged Out', 'You have successfully logged out.', 'info');
+                    
+// Redirect to login page after short delay
+setTimeout(() => {
+    window.location.href = 'account.html';
+}, 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

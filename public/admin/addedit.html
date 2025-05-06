@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CiraCart - Edit Product</title>
+    <meta name="description" content="Admin product editing for CiraCart e-commerce.">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <script src="admin-script.js" defer></script>
+</head>
+<body>
+    <div class="admin-dashboard">
+        <aside class="admin-sidebar">
+            <div class="admin-branding">
+                <h2>CiraCart Admin</h2>
+            </div>
+            
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="admindashboard.html">Dashboard</a></li>
+                    <li><a href="productmanagement.html" class="active">Products</a></li>
+                    <li><a href="admin-categories.html">Categories</a></li>
+                    <li><a href="admin-orders.html">Orders</a></li>
+                    <li><a href="admin-customers.html">Customers</a></li>
+                    <li><a href="admin-discounts.html">Discounts</a></li>
+                    <li><a href="admin-reports.html">Reports</a></li>
+                    <li><a href="admin-settings.html">Settings</a></li>
+                </ul>
+            </nav>
+            
+            <div class="admin-logout">
+                <a href="admin-login.html">Logout</a>
+            </div>
+        </aside>
+        
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1>Edit Product: Smart Watch Pro</h1>
+                    <div class="admin-user">
+                        <span>Welcome, Admin</span>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="admin-content">
+                <div class="breadcrumb">
+                    <a href="admin-dashboard.html">Dashboard</a> &gt;
+                    <a href="admin-products.html">Products</a> &gt;
+                    <span>Edit Product</span>
+                </div>
+                
+                <form class="product-form" action="/admin/products/update" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="product_id" value="P0123">
+                    
+                    <div class="form-sections">
+                        <div class="form-section">
+                            <h3>Basic Information</h3>
+                            
+                            <div class="form-group">
+                                <label for="product_name">Product Name</label>
+                                <input type="text" id="product_name" name="product_name" value="Smart Watch Pro" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product_slug">Product Slug</label>
+                                <input type="text" id="product_slug" name="product_slug" value="smart-watch-pro">
+                                <p class="field-hint">The URL-friendly version of the name</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product_sku">SKU</label>
+                                <input type="text" id="product_sku" name="product_sku" value="SWP-001">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product_description">Description</label>
+                                <textarea id="product_description" name="product_description" rows="6">The Smart Watch Pro is a premium wearable device with health tracking, notifications, and more. Features include heart rate monitoring, sleep tracking, and water resistance up to 50m.</textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product_short_description">Short Description</label>
+                                <textarea id="product_short_description" name="product_short_description" rows="3">Premium smartwatch with health tracking and notifications.</textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Pricing</h3>
+                            
+                            <div class="form-group">
+                                <label for="regular_price">Regular Price ($)</label>
+                                <input type="number" id="regular_price" name="regular_price" value="99.99" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sale_price">Sale Price ($)</label>
+                                <input type="number" id="sale_price" name="sale_price" value="79.99" step="0.01">
+                                <p class="field-hint">Leave empty for no sale price</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cost_price">Cost Price ($)</label>
+                                <input type="number" id="cost_price" name="cost_price" value="45.00" step="0.01">
+                                <p class="field-hint">Your cost (not shown to customers)</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Tax Status</label>
+                                <div class="radio-group">
+                                    <input type="radio" id="taxable" name="tax_status" value="taxable" checked>
+                                    <label for="taxable">Taxable</label>
+                                    
+                                    <input type="radio" id="non_taxable" name="tax_status" value="non_taxable">
+                                    <label for="non_taxable">Non-taxable</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Inventory</h3>
+                            
+                            <div class="form-group">
+                                <label for="manage_stock">Manage Stock?</label>
+                                <input type="checkbox" id="manage_stock" name="manage_stock" checked>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="stock_quantity">Stock Quantity</label>
+                                <input type="number" id="stock_quantity" name="stock_quantity" value="24">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="stock_status">Stock Status</label>
+                                <select id="stock_status" name="stock_status">
+                                    <option value="in_stock" selected>In Stock</option>
+                                    <option value="out_of_stock">Out of Stock</option>
+                                    <option value="on_backorder">On Backorder</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="low_stock_threshold">Low Stock Threshold</label>
+                                <input type="number" id="low_stock_threshold" name="low_stock_threshold" value="5">
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Shipping</h3>
+                            
+                            <div class="form-group">
+                                <label for="weight">Weight (kg)</label>
+                                <input type="number" id="weight" name="weight" value="0.1" step="0.01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Dimensions (cm)</label>
+                                <div class="dimensions-inputs">
+                                    <input type="number" id="length" name="length" placeholder="Length" value="5" step="0.1">
+                                    <input type="number" id="width" name="width" placeholder="Width" value="4" step="0.1">
+                                    <input type="number" id="height" name="height" placeholder="Height" value="1.2" step="0.1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="shipping_class">Shipping Class</label>
+                                <select id="shipping_class" name="shipping_class">
+                                    <option value="standard" selected>Standard</option>
+                                    <option value="express">Express</option>
+                                    <option value="free">Free Shipping</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Categories & Tags</h3>
+                            
+                            <div class="form-group">
+                                <label>Categories</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="cat_electronics" name="categories[]" value="electronics" checked>
+                                        <label for="cat_electronics">Electronics</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="cat_wearables" name="categories[]" value="wearables" checked>
+                                        <label for="cat_wearables">Wearables</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="cat_smartwatches" name="categories[]" value="smartwatches" checked>
+                                        <label for="cat_smartwatches">Smart Watches</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="cat_fitness" name="categories[]" value="fitness">
+                                        <label for="cat_fitness">Fitness</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product_tags">Tags</label>
+                                <input type="text" id="product_tags" name="product_tags" value="watch, smart, wearable, fitness">
+                                <p class="field-hint">Separate tags with commas</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product_brand">Brand</label>
+                                <select id="product_brand" name="product_brand">
+                                    <option value="techwave" selected>TechWave</option>
+                                    <option value="fitgear">FitGear</option>
+                                    <option value="smartlife">SmartLife</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Images</h3>
+                            
+                            <div class="form-group">
+                                <label for="product_image_main">Main Product Image</label>
+                                <input type="file" id="product_image_main" name="product_image_main" accept="image/*">
+                                <div class="current-image">
+                                    <p>Current Image:</p>
+                                    <img src="images/products/smartwatch-main.jpg" alt="Smart Watch Pro" class="image-preview" width="150">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product_gallery">Product Gallery</label>
+                                <input type="file" id="product_gallery" name="product_gallery[]" accept="image/*" multiple>
+                                <div class="image-upload-container">
+                                    <div class="image-upload-item">
+                                        <img src="images/products/smartwatch-angle1.jpg" alt="Smart Watch Side View">
+                                        <button type="button" class="delete-btn">×</button>
+                                    </div>
+                                    <div class="image-upload-item">
+                                        <img src="images/products/smartwatch-angle2.jpg" alt="Smart Watch App View">
+                                        <button type="button" class="delete-btn">×</button>
+                                    </div>
+                                    <div class="image-upload-item">
+                                        <img src="images/products/smartwatch-box.jpg" alt="Smart Watch Package">
+                                        <button type="button" class="delete-btn">×</button>
+                                    </div>
+                                    <div class="image-upload-item">
+                                        <span>+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Attributes & Variations</h3>
+                            
+                            <div class="form-group">
+                                <label for="has_variations">Product has variations?</label>
+                                <input type="checkbox" id="has_variations" name="has_variations" checked>
+                            </div>
+                            
+                            <div class="variations-container">
+                                <div class="form-group">
+                                    <label>Color</label>
+                                    <div class="attribute-values">
+                                        <div class="attribute-value">
+                                            <input type="text" name="attribute_color[]" value="Black" placeholder="Value">
+                                            <button type="button" class="remove-value">×</button>
+                                        </div>
+                                        <div class="attribute-value">
+                                            <input type="text" name="attribute_color[]" value="Silver" placeholder="Value">
+                                            <button type="button" class="remove-value">×</button>
+                                        </div>
+                                        <div class="attribute-value">
+                                            <input type="text" name="attribute_color[]" value="Rose Gold" placeholder="Value">
+                                            <button type="button" class="remove-value">×</button>
+                                        </div>
+                                        <button type="button" class="add-value">+ Add Value</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Band Type</label>
+                                    <div class="attribute-values">
+                                        <div class="attribute-value">
+                                            <input type="text" name="attribute_band[]" value="Silicone" placeholder="Value">
+                                            <button type="button" class="remove-value">×</button>
+                                        </div>
+                                        <div class="attribute-value">
+                                            <input type="text" name="attribute_band[]" value="Leather" placeholder="Value">
+                                            <button type="button" class="remove-value">×</button>
+                                        </div>
+                                        <button type="button" class="add-value">+ Add Value</button>
+                                    </div>
+                                </div>
+                                
+                                <button type="button" class="btn btn-secondary add-attribute">+ Add New Attribute</button>
+                                
+                                <div class="variations-heading">
+                                    <h4>Product Variations</h4>
+                                    <button type="button" class="btn btn-secondary generate-variations">Generate All Variations</button>
+                                </div>
+                                
+                                <div class="variations-list">
+                                    <div class="variation-item">
+                                        <div class="variation-details">
+                                            <span class="variation-title">Black / Silicone</span>
+                                            <div class="variation-controls">
+                                                <input type="checkbox" id="var_active_1" name="var_active_1" checked>
+                                                <label for="var_active_1">Active</label>
+                                            </div>
+                                        </div>
+                                        <div class="variation-fields">
+                                            <div class="variation-field">
+                                                <label>SKU</label>
+                                                <input type="text" name="var_sku_1" value="SWP-001-BS">
+                                            </div>
+                                            <div class="variation-field">
+                                                <label>Price ($)</label>
+                                                <input type="number" name="var_price_1" value="99.99" step="0.01">
+                                            </div>
+                                            <div class="variation-field">
+                                                <label>Stock</label>
+                                                <input type="number" name="var_stock_1" value="10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="variation-item">
+                                        <div class="variation-details">
+                                            <span class="variation-title">Silver / Silicone</span>
+                                            <div class="variation-controls">
+                                                <input type="checkbox" id="var_active_2" name="var_active_2" checked>
+                                                <label for="var_active_2">Active</label>
+                                            </div>
+                                        </div>
+                                        <div class="variation-fields">
+                                            <div class="variation-field">
+                                                <label>SKU</label>
+                                                <input type="text" name="var_sku_2" value="SWP-002-SS">
+                                            </div>
+                                            <div class="variation-field">
+                                                <label>Price ($)</label>
+                                                <input type="number" name="var_price_2" value="99.99" step="0.01">
+                                            </div>
+                                            <div class="variation-field">
+                                                <label>Stock</label>
+                                                <input type="number" name="var_stock_2" value="8">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="variation-item">
+                                        <div class="variation-details">
+                                            <span class="variation-title">Rose Gold / Leather</span>
+                                            <div class="variation-controls">
+                                                <input type="checkbox" id="var_active_3" name="var_active_3" checked>
+                                                <label for="var_active_3">Active</label>
+                                            </div>
+                                        </div>
+                                        <div class="variation-fields">
+                                            <div class="variation-field">
+                                                <label>SKU</label>
+                                                <input type="text" name="var_sku_3" value="SWP-003-RL">
+                                            </div>
+                                            <div class="variation-field">
+                                                <label>Price ($)</label>
+                                                <input type="number" name="var_price_3" value="119.99" step="0.01">
+                                            </div>
+                                            <div class="variation-field">
+                                                <label>Stock</label>
+                                                <input type="number" name="var_stock_3" value="6">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>SEO & Visibility</h3>
+                            
+                            <div class="form-group">
+                                <label for="meta_title">Meta Title</label>
+                                <input type="text" id="meta_title" name="meta_title" value="Smart Watch Pro - Premium Health Tracking Smartwatch">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="meta_description">Meta Description</label>
+                                <textarea id="meta_description" name="meta_description" rows="3">Discover the Smart Watch Pro with advanced health tracking, notifications, water resistance, and long battery life. The perfect companion for your active lifestyle.</textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="meta_keywords">Meta Keywords</label>
+                                <input type="text" id="meta_keywords" name="meta_keywords" value="smartwatch, health tracking, fitness watch, waterproof watch, smart notifications">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Product Visibility</label>
+                                <div class="radio-group">
+                                    <input type="radio" id="visibility_visible" name="visibility" value="visible" checked>
+                                    <label for="visibility_visible">Visible</label>
+                                    
+                                    <input type="radio" id="visibility_catalog" name="visibility" value="catalog">
+                                    <label for="visibility_catalog">Catalog Only</label>
+                                    
+                                    <input type="radio" id="visibility_search" name="visibility" value="search">
+                                    <label for="visibility_search">Search Only</label>
+                                    
+                                    <input type="radio" id="visibility_hidden" name="visibility" value="hidden">
+                                    <label for="visibility_hidden">Hidden</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product_status">Status</label>
+                                <select id="product_status" name="product_status">
+                                    <option value="published" selected>Published</option>
+                                    <option value="draft">Draft</option>
+                                    <option value="pending">Pending Review</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Additional Information</h3>
+                            
+                            <div class="form-group">
+                                <label for="product_features">Key Features</label>
+                                <textarea id="product_features" name="product_features" rows="4">- Heart rate monitoring
+- Sleep tracking
+- 50m water resistance
+- 7-day battery life
+- Smartphone notifications
+- Customizable watch faces</textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product_warranty">Warranty Information</label>
+                                <textarea id="product_warranty" name="product_warranty" rows="3">1-year manufacturer warranty covering defects in materials and workmanship.</textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product_includes">Package Includes</label>
+                                <textarea id="product_includes" name="product_includes" rows="3">- Smart Watch Pro
+- Charging cable
+- Quick start guide
+- Warranty card</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <div class="button-group">
+                            <button type="button" class="btn btn-danger delete-product">Delete Product</button>
+                            <button type="button" class="btn btn-secondary">Preview</button>
+                        </div>
+                        <div class="button-group">
+                            <button type="submit" name="save_draft" class="btn btn-secondary">Save Draft</button>
+                            <button type="submit" name="update_product" class="btn btn-primary">Update Product</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

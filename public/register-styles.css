@@ -1,0 +1,111 @@
+/* Unified styling for account and register pages */
+
+body {
+    background-color: #f5f5f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.account-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #6200ea, #ff4081);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(98, 0, 234, 0.15);
+    color: white;
+}
+
+.account-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+.register-form .form-group {
+    margin-bottom: 20px;
+}
+
+.register-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: white;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgba(255,255,255,0.9);
+    color: #333;
+    transition: box-shadow 0.3s ease;
+}
+
+.register-form input[type="text"]:focus,
+.register-form input[type="email"]:focus,
+.register-form input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0 0 8px 2px rgba(255, 64, 129, 0.7);
+}
+
+.checkbox-group {
+    margin-bottom: 20px;
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    font-size: 14px;
+    color: white;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background-color: white;
+    color: #ff4081;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: #ff4081;
+    color: white;
+    box-shadow: 0 6px 25px rgba(255, 64, 129, 0.7);
+}
+
+.alternative-register {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 16px;
+    font-style: italic;
+    color: white;
+}
+
+.alternative-register a {
+    color: white;
+    text-decoration: underline;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.alternative-register a:hover {
+    color: #ff4081;
+    text-shadow: none;
+}
